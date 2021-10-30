@@ -1,0 +1,3 @@
+BetterDiscord: https://github.com/BetterDiscord/BetterDiscord
+LyraS: https://github.com/yeyushengfan258/LyraS-kde
+google-cloud-sdk: https://cloud.google.com/sdk/docs/quickstart

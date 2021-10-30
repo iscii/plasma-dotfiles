@@ -1,0 +1,18 @@
+{
+    "BDFDB": true,
+    "GameActivityToggle": true,
+    "PluginRepo": true,
+    "SpotifyControls": true,
+    "ThemeRepo": true,
+    "BiggerStreamPreview": true,
+    "DoubleClickToEdit": true,
+    "HideDisabledEmojis": true,
+    "ImageUtilities": true,
+    "AppNotifications": true,
+    "InvisibleTyping": true,
+    "ShowConnections": true,
+    "ThemeSettings": false,
+    "Translator": true,
+    "WhoReacted": true,
+    "ZeresPluginLibrary": true
+}
