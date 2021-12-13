@@ -1,6 +1,6 @@
 {
     "general": {
-        "emotes": true,
+        "emotes": false,
         "publicServers": true,
         "voiceDisconnect": false,
         "showToasts": true,
@@ -28,7 +28,7 @@
         "reactDevTools": false,
         "inspectElement": false,
         "devToolsWarning": false,
-        "debugLogs": false
+        "debugLogs": true
     },
     "window": {
         "transparency": false,

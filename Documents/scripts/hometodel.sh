@@ -1,2 +1,2 @@
 #!/bin/bash
-xkbcomp /home/iscii/Documents/swap-HOME-DEL.xkb $DISPLAY
+xkbcomp /home/iscii/Documents/xkbs/swap-HOME-DEL.xkb $DISPLAY

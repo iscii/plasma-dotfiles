@@ -110,3 +110,9 @@ alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# Turn off powertop autosuspend for mouse and keyboard
+#echo 'on' > '/sys/bus/usb/devices/3-2.3/power/control'
+#echo 'on' > '/sys/bus/usb/devices/3-1/power/control'
+
+
