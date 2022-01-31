@@ -2,7 +2,7 @@
  * @name Translator
  * @author DevilBro
  * @authorId 278543574059057154
- * @version 2.3.2
+ * @version 2.3.3
  * @description Allows you to translate Messages and your outgoing Messages within Discord
  * @invite Jx3TjNS
  * @donate https://www.paypal.me/MircoWittrien
@@ -17,29 +17,12 @@ module.exports = (_ => {
 		"info": {
 			"name": "Translator",
 			"author": "DevilBro",
-			"version": "2.3.2",
+			"version": "2.3.3",
 			"description": "Allows you to translate Messages and your outgoing Messages within Discord"
-		},
-		"changeLog": {
-			"fixed": {
-				"Yandex": "Fixed crashes with Yandex"
-			},
-			"added": {
-				"Baidu": "Added",
-				"Google": "Added zh-TW"
-			}
 		}
 	};
 	
-	return (window.Lightcord && !Node.prototype.isPrototypeOf(window.Lightcord) || window.LightCord && !Node.prototype.isPrototypeOf(window.LightCord) || window.Astra && !Node.prototype.isPrototypeOf(window.Astra)) ? class {
-		getName () {return config.info.name;}
-		getAuthor () {return config.info.author;}
-		getVersion () {return config.info.version;}
-		getDescription () {return "Do not use LightCord!";}
-		load () {BdApi.alert("Attention!", "By using LightCord you are risking your Discord Account, due to using a 3rd Party Client. Switch to an official Discord Client (https://discord.com/) with the proper BD Injection (https://betterdiscord.app/)");}
-		start() {}
-		stop() {}
-	} : !window.BDFDB_Global || (!window.BDFDB_Global.loaded && !window.BDFDB_Global.started) ? class {
+	return !window.BDFDB_Global || (!window.BDFDB_Global.loaded && !window.BDFDB_Global.started) ? class {
 		getName () {return config.info.name;}
 		getAuthor () {return config.info.author;}
 		getVersion () {return config.info.version;}
@@ -301,6 +284,7 @@ module.exports = (_ => {
 				auto: true,
 				funcName: "deepLTranslate",
 				languages: ["bg","cs","da","de","en","el","es","et","fi","fr","hu","it","ja","lt","lv","nl","pl","pt","ro","ru","sk","sl","sv","zh"],
+				premium: true,
 				key: "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx:fx"
 			},
 			itranslate: {
@@ -398,7 +382,7 @@ module.exports = (_ => {
 						Embed: "render"
 					},
 					after: {
-						ChannelTextAreaContainer: "render",
+						ChannelTextAreaButtons: "type",
 						Messages: "type",
 						MessageContent: "type",
 						Embed: "render"
@@ -416,6 +400,11 @@ module.exports = (_ => {
 			}
 			
 			onStart () {
+				// REMOVE 24.09.2021
+				let oldAuthKeys = BDFDB.DataUtils.load(this, "authKeys");
+				for (let key in oldAuthKeys) if (!BDFDB.ObjectUtils.is(oldAuthKeys[key])) oldAuthKeys[key] = {key: oldAuthKeys[key]};
+				BDFDB.DataUtils.save(oldAuthKeys, this, "authKeys")
+				
 				this.forceUpdateAll();
 			}
 			
@@ -444,17 +433,44 @@ module.exports = (_ => {
 						
 						settingsItems.push(BDFDB.ReactUtils.createElement(BDFDB.LibraryComponents.SettingsPanelList, {
 							title: "Own Auth Keys:",
-							children: Object.keys(translationEngines).filter(key => translationEngines[key].key).map(key => BDFDB.ReactUtils.createElement(BDFDB.LibraryComponents.SettingsItem, {
-								type: "TextInput",
-								basis: "75%",
-								label: translationEngines[key].name,
-								placeholder: translationEngines[key].key,
-								value: authKeys[key],
-								onChange: value => {
-									authKeys[key] = (value || "").trim();
-									if (!authKeys[key]) delete authKeys[key];
-									BDFDB.DataUtils.save(authKeys, this, "authKeys");
-								}
+							children: Object.keys(translationEngines).filter(key => translationEngines[key].key).map(key => BDFDB.ReactUtils.createElement("div", {
+								className: BDFDB.disCN.marginbottom8,
+								children: [
+									BDFDB.ReactUtils.createElement(BDFDB.LibraryComponents.Flex, {
+										className: BDFDB.disCN.marginbottom8,
+										align: BDFDB.LibraryComponents.Flex.Align.CENTER,
+										direction: BDFDB.LibraryComponents.Flex.Direction.HORIZONTAL,
+										children: [
+											BDFDB.ReactUtils.createElement(BDFDB.LibraryComponents.FormComponents.FormTitle, {
+												className: BDFDB.disCN.marginreset,
+												tag: BDFDB.LibraryComponents.FormComponents.FormTitle.Tags.H5,
+												children: translationEngines[key].name
+											}),
+											translationEngines[key].premium && BDFDB.ReactUtils.createElement(BDFDB.LibraryComponents.SettingsItem, {
+												type: "Switch",
+												margin: 0,
+												grow: 0,
+												label: "Paid Version",
+												tag: BDFDB.LibraryComponents.FormComponents.FormTitle.Tags.H5,
+												value: authKeys[key] && authKeys[key].paid,
+												onChange: value => {
+													if (!authKeys[key]) authKeys[key] = {};
+													authKeys[key].paid = value;
+													BDFDB.DataUtils.save(authKeys, this, "authKeys");
+												}
+											})
+										]
+									}),
+									BDFDB.ReactUtils.createElement(BDFDB.LibraryComponents.TextInput, {
+										placeholder: translationEngines[key].key,
+										value: authKeys[key] && authKeys[key].key,
+										onChange: value => {
+											if (!authKeys[key]) authKeys[key] = {};
+											authKeys[key].key = (value || "").trim();
+											BDFDB.DataUtils.save(authKeys, this, "authKeys");
+										}
+									})
+								]
 							}))
 						}));
 						
@@ -629,7 +645,7 @@ module.exports = (_ => {
 					if (this.isTranslationEnabled(e.instance.props.channel.id)) {
 						e2.stopOriginalMethodCall();
 						this.translateText(e2.methodArguments[0], messageTypes.SENT, (translation, input, output) => {
-							translation = !translation ? e2.methodArguments[0] : (this.settings.general.sendOriginalMessage ? (e2.methodArguments[0] + "\n\n" + translation) : translation);
+							translation = !translation ? e2.methodArguments[0] : (this.settings.general.sendOriginalMessage ? (translation + "\n\n> *" + e2.methodArguments[0].split("\n").join("*\n> *") + "*") : translation);
 							e2.originalMethod(translation);
 						});
 						return Promise.resolve({
@@ -645,15 +661,11 @@ module.exports = (_ => {
 				if (this.isTranslationEnabled(e.instance.props.channel.id) && isTranslating) e.instance.props.disabled = true;
 			}
 			
-			processChannelTextAreaContainer (e) {
-				if (this.settings.general.addTranslateButton) {
-					let editor = BDFDB.ReactUtils.findChild(e.returnvalue, {name: "ChannelEditorContainer"});
-					if (editor && (editor.props.type == BDFDB.DiscordConstants.TextareaTypes.NORMAL || editor.props.type == BDFDB.DiscordConstants.TextareaTypes.SIDEBAR) && !editor.props.disabled) {
-						let [children, index] = BDFDB.ReactUtils.findParent(e.returnvalue, {props: [["className", BDFDB.disCN.textareapickerbuttons]]});
-						if (index > -1 && children[index].props && children[index].props.children) children[index].props.children.unshift(BDFDB.ReactUtils.createElement(TranslateButtonComponent, {
-							channelId: e.instance.props.channel.id
-						}));
-					}
+			processChannelTextAreaButtons (e) {
+				if (this.settings.general.addTranslateButton && (e.instance.props.type == BDFDB.DiscordConstants.TextareaTypes.NORMAL || e.instance.props.type == BDFDB.DiscordConstants.TextareaTypes.SIDEBAR) && !e.instance.props.disabled) {
+					e.returnvalue.props.children.unshift(BDFDB.ReactUtils.createElement(TranslateButtonComponent, {
+						channelId: e.instance.props.channel.id
+					}));
 				}
 			}
 
@@ -941,7 +953,7 @@ module.exports = (_ => {
 			}
 			
 			deepLTranslate (data, callback) {
-				BDFDB.LibraryRequires.request(`https://api-free.deepl.com/v2/translate?auth_key=${authKeys.deepl || "75cc2f40-fdae-14cd-7242-6a384e2abb9c:fx"}&text=${encodeURIComponent(data.text)}${data.input.auto ? "" : `&source_lang=${data.input.id}`}&target_lang=${data.output.id}`, (error, response, body) => {
+				BDFDB.LibraryRequires.request(`${authKeys.deepl && authKeys.deepl.paid ? "https://api.deepl.com/v2/translate" : "https://api-free.deepl.com/v2/translate"}?auth_key=${authKeys.deepl && authKeys.deepl.key || "75cc2f40-fdae-14cd-7242-6a384e2abb9c:fx"}&text=${encodeURIComponent(data.text)}${data.input.auto ? "" : `&source_lang=${data.input.id}`}&target_lang=${data.output.id}`, (error, response, body) => {
 					if (!error && body && response.statusCode == 200) {
 						try {
 							body = JSON.parse(body);
@@ -976,7 +988,7 @@ module.exports = (_ => {
 					BDFDB.LibraryRequires.request.post({
 						url: "https://web-api.itranslateapp.com/v3/texts/translate",
 						headers: {
-							"API-KEY": authKeys.itranslate || data.engine.APIkey
+							"API-KEY": authKeys.itranslate && authKeys.itranslate.key || data.engine.APIkey
 						},
 						body: JSON.stringify({
 							source: {
@@ -1016,7 +1028,7 @@ module.exports = (_ => {
 						}
 					});
 				};
-				if (authKeys.itranslate || data.engine.APIkey) translate();
+				if (authKeys.itranslate && authKeys.itranslate.key || data.engine.APIkey) translate();
 				else BDFDB.LibraryRequires.request("https://www.itranslate.com/js/webapp/main.js", {gzip: true}, (error, response, body) => {
 					if (!error && body) {
 						let APIkey = /var API_KEY = "(.+)"/.exec(body);
@@ -1031,7 +1043,7 @@ module.exports = (_ => {
 			}
 			
 			yandexTranslate (data, callback) {
-				BDFDB.LibraryRequires.request(`https://translate.yandex.net/api/v1.5/tr/translate?key=${authKeys.yandex || "trnsl.1.1.20191206T223907Z.52bd512eca953a5b.1ec123ce4dcab3ae859f312d27cdc8609ab280de"}&text=${encodeURIComponent(data.text)}&lang=${data.specialCase || data.input.auto ? data.output.id : (data.input.id + "-" + data.output.id)}&options=1`, (error, response, body) => {
+				BDFDB.LibraryRequires.request(`https://translate.yandex.net/api/v1.5/tr/translate?key=${authKeys.yandex && authKeys.yandex.key || "trnsl.1.1.20191206T223907Z.52bd512eca953a5b.1ec123ce4dcab3ae859f312d27cdc8609ab280de"}&text=${encodeURIComponent(data.text)}&lang=${data.specialCase || data.input.auto ? data.output.id : (data.input.id + "-" + data.output.id)}&options=1`, (error, response, body) => {
 					if (!error && body && response.statusCode == 200) {
 						try {
 							body = BDFDB.DOMUtils.create(body);
@@ -1067,7 +1079,7 @@ module.exports = (_ => {
 			}
 			
 			papagoTranslate (data, callback) {
-				const credentials = (authKeys.papago || "kUNGxtAmTJQFbaFehdjk zC70k3VhpM").split(" ");
+				const credentials = (authKeys.papago && authKeys.papago.key || "kUNGxtAmTJQFbaFehdjk zC70k3VhpM").split(" ");
 				BDFDB.LibraryRequires.request.post({
 					url: "https://openapi.naver.com/v1/papago/n2mt",
 					form: {
@@ -1104,7 +1116,7 @@ module.exports = (_ => {
 			}
 			
 			baiduTranslate (data, callback) {
-				const credentials = (authKeys.baidu || "20210425000799880 e12h9h4rh39r8h12r8 D90usZcbznwthzKC1KOb").split(" ");
+				const credentials = (authKeys.baidu && authKeys.baidu.key || "20210425000799880 e12h9h4rh39r8h12r8 D90usZcbznwthzKC1KOb").split(" ");
 				BDFDB.LibraryRequires.request.post({
 					url: "https://fanyi-api.baidu.com/api/trans/vip/translate",
 					form: {
@@ -1615,19 +1627,19 @@ module.exports = (_ => {
 							popout_untranslateoption:			"取消翻译",
 							toast_translating:					"正在翻译",
 							toast_translating_failed:			"翻译失败",
-							toast_translating_tryanother:		"尝试其他翻译器",
+							toast_translating_tryanother:		"尝试其它翻译器",
 							translated_watermark:				"已翻译"
 						};
 					case "zh-TW":	// Chinese (Taiwan)
 						return {
-							context_translator:					"搜索翻譯",
+							context_translator:					"搜尋翻譯",
 							context_messagetranslateoption:		"翻譯訊息",
 							context_messageuntranslateoption:	"取消翻譯訊息",
 							popout_translateoption:				"翻譯",
 							popout_untranslateoption:			"取消翻譯",
 							toast_translating:					"正在翻譯",
-							toast_translating_failed:			"翻譯失敗",
-							toast_translating_tryanother:		"嘗試其他翻譯器",
+							toast_translating_failed:			"無法翻譯",
+							toast_translating_tryanother:		"嘗試其它翻譯器",
 							translated_watermark:				"已翻譯"
 						};
 					default:		// English

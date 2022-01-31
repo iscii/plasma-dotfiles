@@ -6,7 +6,7 @@
     "GameActivityToggle": true,
     "HideDisabledEmojis": true,
     "ImageUtilities": true,
-    "AppNotifications": true,
+    "AppNotifications": false,
     "InvisibleTyping": true,
     "PluginRepo": false,
     "ShowConnections": true,

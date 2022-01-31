@@ -1,18 +1,19 @@
 {
 	"connections": {
-		"twitch": true,
-		"youtube": true,
 		"battlenet": true,
-		"skype": true,
-		"leagueoflegends": true,
-		"steam": true,
-		"reddit": true,
 		"facebook": true,
-		"twitter": true,
-		"spotify": true,
-		"xbox": true,
+		"github": true,
+		"leagueoflegends": true,
+		"playstation": true,
+		"reddit": true,
 		"samsung": true,
-		"github": true
+		"skype": true,
+		"spotify": true,
+		"steam": true,
+		"twitch": true,
+		"twitter": true,
+		"xbox": true,
+		"youtube": true
 	},
 	"general": {
 		"useColoredIcons": true,
