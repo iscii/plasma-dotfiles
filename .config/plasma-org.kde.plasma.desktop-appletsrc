@@ -139,7 +139,7 @@ immutability=1
 plugin=org.kde.plasma.eventcalendar
 
 [Containments][2][Applets][53][Configuration]
-PreloadWeight=24
+PreloadWeight=0
 
 [Containments][2][Applets][53][Configuration][ConfigDialog]
 DialogHeight=540
@@ -177,7 +177,7 @@ immutability=1
 plugin=org.kde.plasma.systemtray
 
 [Containments][2][Applets][7][Configuration]
-PreloadWeight=89
+PreloadWeight=100
 SystrayContainmentId=8
 
 [Containments][2][ConfigDialog]
@@ -191,6 +191,8 @@ PreloadWeight=0
 AppletOrder=50;53;36;46;7;4;32;5;39;3;6
 
 [Containments][47]
+ItemGeometries-1920x1080=
+ItemGeometriesHorizontal=
 activityId=9a06e3e0-575a-45cd-865d-1744eeb31e13
 formfactor=0
 immutability=1
@@ -234,14 +236,11 @@ immutability=1
 plugin=org.kde.plasma.volume
 
 [Containments][8][Applets][10][Configuration]
-PreloadWeight=9
+PreloadWeight=24
 
 [Containments][8][Applets][10][Configuration][ConfigDialog]
 DialogHeight=540
 DialogWidth=720
-
-[Containments][8][Applets][10][Configuration][General]
-globalMute=true
 
 [Containments][8][Applets][11]
 immutability=1
@@ -283,28 +282,28 @@ immutability=1
 plugin=org.kde.plasma.battery
 
 [Containments][8][Applets][18][Configuration]
-PreloadWeight=44
+PreloadWeight=38
 
 [Containments][8][Applets][19]
 immutability=1
 plugin=org.kde.plasma.networkmanagement
 
 [Containments][8][Applets][19][Configuration]
-PreloadWeight=0
+PreloadWeight=20
 
 [Containments][8][Applets][20]
 immutability=1
 plugin=org.kde.plasma.bluetooth
 
 [Containments][8][Applets][20][Configuration]
-PreloadWeight=0
+PreloadWeight=10
 
 [Containments][8][Applets][21]
 immutability=1
 plugin=org.kde.plasma.mediacontroller
 
 [Containments][8][Applets][21][Configuration]
-PreloadWeight=0
+PreloadWeight=5
 
 [Containments][8][Applets][21][Configuration][ConfigDialog]
 DialogHeight=540
@@ -326,7 +325,7 @@ PreloadWeight=0
 
 [Containments][8][General]
 extraItems=org.kde.plasma.keyboardlayout,org.kde.plasma.volume,org.kde.plasma.mediacontroller,org.kde.plasma.clipboard,org.kde.plasma.battery,org.kde.plasma.networkmanagement,org.kde.plasma.notifications,org.kde.plasma.manage-inputmethod,org.kde.plasma.devicenotifier,org.kde.plasma.bluetooth,org.kde.plasma.printmanager
-hiddenItems=discord,steam
+hiddenItems=discord,steam,flameshot
 knownItems=org.kde.plasma.keyboardlayout,org.kde.plasma.volume,org.kde.plasma.mediacontroller,org.kde.plasma.clipboard,org.kde.plasma.battery,org.kde.plasma.networkmanagement,org.kde.plasma.notifications,org.kde.plasma.manage-inputmethod,org.kde.plasma.devicenotifier,org.kde.plasma.bluetooth,org.kde.plasma.printmanager
 
 [Containments2Appletsts][30][Configuration][Appearance]

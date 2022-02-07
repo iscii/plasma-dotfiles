@@ -1,10 +1,12 @@
 {
-    "version": "1.4.0",
+    "version": "1.5.1",
     "emoteVersion": "v1.3.0",
     "favoriteEmotes": {},
     "drawerStates": {
         "settings": {
-            "developer": true
+            "developer": true,
+            "addons": true,
+            "customcss": true
         }
     }
 }

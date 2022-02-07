@@ -9,7 +9,7 @@
     "AppNotifications": false,
     "InvisibleTyping": true,
     "PluginRepo": false,
-    "ShowConnections": true,
+    "ShowConnections": false,
     "SpotifyControls": true,
     "ThemeRepo": false,
     "Translator": false,
