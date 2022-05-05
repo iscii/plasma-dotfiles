@@ -1,0 +1,46 @@
+[Added Associations]
+application/javascript=visual-studio-code.desktop;vim.desktop;wine-extension-txt.desktop;libreoffice-writer.desktop;
+application/pdf=brave-browser.desktop;
+application/x-shellscript=vim.desktop;wine-extension-txt.desktop;visual-studio-code.desktop;
+image/jpeg=org.kde.gwenview.desktop;brave-browser.desktop;
+image/png=org.kde.gwenview.desktop;brave-browser.desktop;
+inode/directory=org.kde.dolphin.desktop;org.kde.gwenview.desktop;vscodium.desktop;ranger.desktop;easytag.desktop;
+text/css=visual-studio-code.desktop;vim.desktop;wine-extension-txt.desktop;libreoffice-writer.desktop;
+text/html=brave-browser.desktop;vscodium.desktop;vim.desktop;GitKraken.desktop;wine-extension-htm.desktop;wine-extension-txt.desktop;libreoffice-writer.desktop;
+text/plain=vim.desktop;visual-studio-code.desktop;wine-extension-txt.desktop;libreoffice-writer.desktop;
+text/x-python=visual-studio-code.desktop;wine-extension-txt.desktop;vim.desktop;
+x-scheme-handler/http=brave-browser.desktop;
+x-scheme-handler/https=brave-browser.desktop;
+x-scheme-handler/mailto=brave-browser.desktop;userapp-Thunderbird-BEEFC1.desktop;
+x-scheme-handler/mid=userapp-Thunderbird-BEEFC1.desktop;
+
+[Default Applications]
+application/javascript=visual-studio-code.desktop;
+application/pdf=brave-browser.desktop;
+application/x-shellscript=vim.desktop;
+image/jpeg=org.kde.gwenview.desktop;
+image/png=org.kde.gwenview.desktop;
+inode/directory=org.kde.dolphin.desktop;
+message/rfc822=userapp-Thunderbird-BEEFC1.desktop
+text/css=visual-studio-code.desktop;
+text/html=brave-browser.desktop;
+text/plain=vim.desktop;
+text/x-python=visual-studio-code.desktop;
+x-scheme-handler/etcher=balena-etcher-electron.desktop
+x-scheme-handler/gitkraken=GitKraken.desktop
+x-scheme-handler/http=brave-browser.desktop;
+x-scheme-handler/https=brave-browser.desktop;
+x-scheme-handler/mailto=userapp-Thunderbird-BEEFC1.desktop
+x-scheme-handler/mid=userapp-Thunderbird-BEEFC1.desktop
+x-scheme-handler/slack=slack.desktop
+x-scheme-handler/tetrio=tetrio-desktop.desktop
+x-scheme-handler/x-github-client=github-desktop.desktop
+x-scheme-handler/x-github-desktop-auth=github-desktop.desktop
+
+[Removed Associations]
+application/pdf=firefox.desktop;wine-extension-pdf.desktop;
+application/x-shellscript=Alacritty.desktop;
+image/jpeg=wine-extension-jpe.desktop;wine-extension-jfif.desktop;
+image/png=wine-extension-png.desktop;
+inode/directory=visual-studio-code.desktop;
+text/html=visual-studio-code.desktop;

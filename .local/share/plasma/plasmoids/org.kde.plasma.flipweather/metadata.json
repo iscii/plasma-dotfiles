@@ -1,0 +1,30 @@
+{
+    "KPlugin": {
+        "Authors": [
+            {
+                "Email": "driglu4it",
+                "Name": "dr@i-glu4it.ru"
+            }
+        ],
+        "Category": "Weather",
+        "Description": "Time and weather similar to HTC-Sense",
+        "Icon": "preferences-system-time",
+        "Id": "org.kde.plasma.flipweather",
+        "License": "GPL-2.0+",
+        "Name": "Flip Clock",
+       
+        "ServiceTypes": [
+            "Plasma/Applet"
+        ],
+        "Version": "0.2",
+        "Website": ""
+    },
+    "X-KDE-ParentApp": "",
+    "X-Plasma-API": "declarativeappletscript",
+    "X-Plasma-MainScript": "ui/main.qml",
+    "X-Plasma-Provides": [
+        "org.kde.plasma.time",
+        "org.kde.plasma.date"
+    ],
+    "X-Plasma-RemoteLocation": ""
+}

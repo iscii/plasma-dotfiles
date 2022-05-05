@@ -1,0 +1,24 @@
+[Desktop Entry]
+Name=Flip Weather
+
+Comment=Time and weather similar to HTC-Sense
+
+Icon=preferences-system-time
+Type=Service
+X-KDE-ParentApp=
+X-KDE-PluginInfo-Author=driglu4it
+X-KDE-PluginInfo-Email=dr@i-glu4it.ru
+X-KDE-PluginInfo-License=MIT
+X-KDE-PluginInfo-Name=org.kde.plasma.flipweather
+X-KDE-PluginInfo-Version=0.2
+X-KDE-PluginInfo-Website=
+X-KDE-ServiceTypes=Plasma/Applet
+X-Plasma-API=declarativeappletscript
+X-KDE-PluginInfo-Category=Weather
+X-Plasma-Provides=org.kde.plasma.time,org.kde.plasma.date
+X-Plasma-DefaultSize=600,300
+X-Plasma-MainScript=ui/main.qml
+X-Plasma-RemoteLocation=
+
+Name[ru_RU]=Flip Weather
+Comment[ru_RU]=Часы и погода похожие на HTC-Sense
