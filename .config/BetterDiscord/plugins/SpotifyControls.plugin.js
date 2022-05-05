@@ -2,7 +2,7 @@
  * @name SpotifyControls
  * @author DevilBro
  * @authorId 278543574059057154
- * @version 1.2.4
+ * @version 1.2.5
  * @description Adds a Control Panel while listening to Spotify on a connected Account
  * @invite Jx3TjNS
  * @donate https://www.paypal.me/MircoWittrien
@@ -17,25 +17,17 @@ module.exports = (_ => {
 		"info": {
 			"name": "SpotifyControls",
 			"author": "DevilBro",
-			"version": "1.2.4",
+			"version": "1.2.5",
 			"description": "Adds a Control Panel while listening to Spotify on a connected Account"
 		},
 		"changeLog": {
-			"fixed": {
-				"Previous": "Double click to previous work again"
+			"improved": {
+				"Add 'by'": "You can now disable the word 'by' in the author name"
 			}
 		}
 	};
 
-	return (window.Lightcord && !Node.prototype.isPrototypeOf(window.Lightcord) || window.LightCord && !Node.prototype.isPrototypeOf(window.LightCord) || window.Astra && !Node.prototype.isPrototypeOf(window.Astra)) ? class {
-		getName () {return config.info.name;}
-		getAuthor () {return config.info.author;}
-		getVersion () {return config.info.version;}
-		getDescription () {return "Do not use LightCord!";}
-		load () {BdApi.alert("Attention!", "By using LightCord you are risking your Discord Account, due to using a 3rd Party Client. Switch to an official Discord Client (https://discord.com/) with the proper BD Injection (https://betterdiscord.app/)");}
-		start() {}
-		stop() {}
-	} : !window.BDFDB_Global || (!window.BDFDB_Global.loaded && !window.BDFDB_Global.started) ? class {
+	return !window.BDFDB_Global || (!window.BDFDB_Global.loaded && !window.BDFDB_Global.started) ? class {
 		getName () {return config.info.name;}
 		getAuthor () {return config.info.author;}
 		getVersion () {return config.info.version;}
@@ -211,7 +203,7 @@ module.exports = (_ => {
 											color: BDFDB.LibraryComponents.TextElement.Colors.CUSTOM,
 											size: BDFDB.LibraryComponents.TextElement.Sizes.SIZE_12,
 											children: BDFDB.ReactUtils.createElement(BDFDB.LibraryComponents.TextScroller, {
-												children: BDFDB.LanguageUtils.LanguageStringsFormat("USER_ACTIVITY_LISTENING_ARTISTS", lastSong.state)
+												children: _this.settings.general.addBy ? BDFDB.LanguageUtils.LanguageStringsFormat("USER_ACTIVITY_LISTENING_ARTISTS", lastSong.state) : lastSong.state
 											})
 										})
 									]
@@ -391,7 +383,7 @@ module.exports = (_ => {
 					onClose: _ => BDFDB.ArrayUtils.remove(this.props.player.props.buttonStates, this.props.type, true),
 					renderPopout: this.props.renderPopout
 				}) : button;
-	}
+			}
 		};
 		const SpotifyControlsTimelineComponent = class SpotifyControlsTimeline extends BdApi.React.Component {
 			componentDidMount() {
@@ -461,9 +453,10 @@ module.exports = (_ => {
 				
 				this.defaults = {
 					general: {
+						addBy: 			{value: true,		description: "Adds the Word 'by' infront of the Author Name"},
 						addTimeline: 		{value: true,		description: "Shows the Song Timeline in the Controls"},
 						addActivityButton: 	{value: true,		description: "Shows the Activity Status Toggle Button in the Controls"},
-						doubleBack: 		{value: true,       description: "Requires the User to press the Back Button twice to go to previous Track"}
+						doubleBack: 		{value: true,		description: "Requires the User to press the Back Button twice to go to previous Track"}
 					},
 					buttons: {
 						share: 				{value: {small: false, big: true},		icons: [""],						description: "Share"},
@@ -493,8 +486,8 @@ module.exports = (_ => {
 						--SC-spotify-green: ${BDFDB.DiscordConstants.Colors.SPOTIFY};
 					}
 					${BDFDB.dotCN.channelpanels} {
-	display: flex;
-	flex-direction: column;
+						display: flex;
+						flex-direction: column;
 					}
 					${BDFDB.dotCN._spotifycontrolscontainer} {
 						display: flex;
@@ -873,8 +866,8 @@ module.exports = (_ => {
 						return {
 							noaccount_header:					"Jotain puuttuu",
 							noaccount_subheader:				"Sinun on yhdistettävä Spotify-tili",
-							noaccount_text:						"Sinulta puuttuu yhdistetty Spotify-tili. Ilman tiliä et voi käyttää Spotify Controls. Yhdistä Spotify-tili Discord-tili napsauttamalla alla olevaa painiketta.",
-							restricted_device:					"Spotify ä ei voi hallita musiikkia toistettaessa rajoitetulla laitteella",
+							noaccount_text:						"Sinulta puuttuu yhdistetty Spotify-tili. Ilman tiliä et voi käyttää Spotify Controlsia. Yhdistä Spotify-tili Discord-tiliisi napsauttamalla alla olevaa painiketta.",
+							restricted_device:					"Spotify ei voi hallita musiikkia toistettaessa rajoitetulla laitteella",
 							toast_copyurl_fail:					"Kappaleen URL-osoitetta ei voitu kopioida leikepöydälle",
 							toast_copyurl_success:				"Kappaleen URL-osoite kopioitiin leikepöydälle"
 						};

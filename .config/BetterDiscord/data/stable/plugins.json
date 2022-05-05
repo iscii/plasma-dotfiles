@@ -7,11 +7,11 @@
     "HideDisabledEmojis": true,
     "ImageUtilities": true,
     "AppNotifications": false,
-    "InvisibleTyping": true,
+    "InvisibleTyping": false,
     "PluginRepo": false,
     "ShowConnections": false,
     "SpotifyControls": true,
     "ThemeRepo": false,
-    "Translator": false,
+    "Translator": true,
     "WhoReacted": false
 }

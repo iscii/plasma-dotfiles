@@ -1,23 +1,26 @@
 {
-	"changeLogs": {
-		"BDFDB": "2.0.6",
-		"GameActivityToggle": "1.0.4",
-		"ImageUtilities": "4.5.2",
-		"ShowConnections": "1.0.7",
-		"SpotifyControls": "1.2.4",
-		"ThemeSettings": "1.3.3",
-		"Translator": "2.3.2"
-	},
-	"choices": {
-		"toastPosition": "right"
-	},
-	"general": {
-		"showToasts": true,
-		"showSupportBadges": true,
-		"useChromium": false
-	},
-	"hashes": {
-		"0BDFDB.data.json": "6161bf8d9b4106e6ca412d1e0481a882156f2aa5",
-		"0BDFDB.raw.css": "a1036e10077b9457f3903795204f7dbd91d7646d"
+	"all": {
+		"changeLogs": {
+			"BDFDB": "2.3.2",
+			"GameActivityToggle": "1.1.2",
+			"ImageUtilities": "4.7.1",
+			"ShowConnections": "1.0.7",
+			"SpotifyControls": "1.2.5",
+			"ThemeSettings": "1.3.3",
+			"Translator": "2.3.2"
+		},
+		"choices": {
+			"toastPosition": "right"
+		},
+		"general": {
+			"showToasts": true,
+			"showSupportBadges": true,
+			"useChromium": false,
+			"shareData": true
+		},
+		"hashes": {
+			"0BDFDB.data.json": "113622f1dbce55eb5be501c2fc06aef0ff0d5727",
+			"0BDFDB.raw.css": "e8d30d44e567f6a77ef4e90734c27c2b47306d20"
+		}
 	}
 }
