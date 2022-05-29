@@ -54,8 +54,8 @@ export QT_IM_MODULE=fcitx
 export XMODIFIERS=@im=fcitx
 
 # Start plasma
-export DESKTOP_SESSION=plasma
-exec startplasma-x11
+#export DESKTOP_SESSION=plasma
+#exec startplasma-x11
 
 # Set home to del
 # exec bash $HOME/Documents/scripts/hometodel.sh

@@ -5,6 +5,8 @@
 			"value": false
 		},
 		"general": {
+			"showButton": true,
+			"showItem": false,
 			"playEnable": true,
 			"playDisable": true
 		},

@@ -7,6 +7,8 @@ fi
 
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
+export GEM_PATH_LOCAL="$HOME/.local/share/gem/ruby/3.0.0/bin"
+export PATH=":$GEM_PATH_LOCAL:$PATH"
 
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
@@ -108,7 +110,9 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias dot='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 alias dots="dot add -u && dot commit -m \"update $(date)\" && dot push"
-alias p="paru"
+alias asd="yay -Syu"
+alias proj="cd $HOME/Documents/GitHub"
+alias iz="cd $HOME/Documents/GitHub/iscii"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
@@ -117,4 +121,5 @@ alias p="paru"
 #echo 'on' > '/sys/bus/usb/devices/3-2.3/power/control'
 #echo 'on' > '/sys/bus/usb/devices/3-1/power/control'
 
-
+# Source forgit
+[ -f ~/Packages/forgit/forgit.plugin.zsh ] && source ~/Packages/forgit/forgit.plugin.zsh

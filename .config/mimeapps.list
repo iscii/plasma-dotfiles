@@ -1,5 +1,6 @@
 [Added Associations]
 application/javascript=visual-studio-code.desktop;vim.desktop;wine-extension-txt.desktop;libreoffice-writer.desktop;
+application/json=vscodium.desktop;vim.desktop;wine-extension-txt.desktop;libreoffice-writer.desktop;GitKraken.desktop;
 application/pdf=brave-browser.desktop;
 application/x-shellscript=vim.desktop;wine-extension-txt.desktop;visual-studio-code.desktop;
 image/jpeg=org.kde.gwenview.desktop;brave-browser.desktop;
@@ -16,6 +17,7 @@ x-scheme-handler/mid=userapp-Thunderbird-BEEFC1.desktop;
 
 [Default Applications]
 application/javascript=visual-studio-code.desktop;
+application/json=vscodium.desktop;
 application/pdf=brave-browser.desktop;
 application/x-shellscript=vim.desktop;
 image/jpeg=org.kde.gwenview.desktop;
@@ -36,8 +38,10 @@ x-scheme-handler/slack=slack.desktop
 x-scheme-handler/tetrio=tetrio-desktop.desktop
 x-scheme-handler/x-github-client=github-desktop.desktop
 x-scheme-handler/x-github-desktop-auth=github-desktop.desktop
+x-scheme-handler/simplenote=simplenote.desktop
 
 [Removed Associations]
+application/json=visual-studio-code.desktop;
 application/pdf=firefox.desktop;wine-extension-pdf.desktop;
 application/x-shellscript=Alacritty.desktop;
 image/jpeg=wine-extension-jpe.desktop;wine-extension-jfif.desktop;
